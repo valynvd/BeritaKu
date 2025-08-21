@@ -1,1 +1,771 @@
-tes
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeritaKu - Portal Berita Terpercaya</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        /* Header */
+        .header {
+            background: rgb(255, 255, 255);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: black;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: black;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-menu a:hover {
+            color: #dc2626;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            border: 2px solid #ccc;
+        }
+
+        .search-box input {
+            background: none;
+            border: none;
+            color: black;
+            padding: 0.5rem;
+            width: 200px;
+            outline: none;
+        }
+
+        .search-box input::placeholder {
+            color: black;
+        }
+
+        .search-btn {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        /* Breaking News */
+        .breaking-news {
+            background: #dc2626;
+            color: white;
+            padding: 0.5rem 0;
+            overflow: hidden;
+        }
+
+        .breaking-container {
+            max-width: 1200px;
+            height: 40px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .breaking-text {
+            animation: scroll 30s linear infinite;
+            white-space: nowrap;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* Main Container */
+        .main-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            transition: transform 0.3s;
+        }
+
+        .hero-section:hover {
+            transform: translateY(-5px);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .hero-content {
+            padding: 1.5rem;
+        }
+
+        .hero-category {
+            background: #3b82f6;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .hero-excerpt {
+            color: #6b7280;
+            margin-bottom: 1rem;
+        }
+
+        .hero-meta {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #9ca3af;
+        }
+
+        /* News Grid */
+        .news-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            transition: all 0.3s;
+        }
+
+        .news-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .news-card img {
+            width: 150px;
+            height: 100px;
+            object-fit: cover;
+        }
+
+        .news-card-content {
+            padding: 1rem;
+            flex: 1;
+        }
+
+        .news-category {
+            background: #10b981;
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-title {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: #1f2937;
+        }
+
+        .news-meta {
+            font-size: 0.8rem;
+            color: #9ca3af;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .sidebar-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #1f2937;
+            border-bottom: 3px solid #3b82f6;
+            padding-bottom: 0.5rem;
+        }
+
+        .trending-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .trending-number {
+            background: #3b82f6;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-weight: bold;
+        }
+
+        .trending-content {
+            flex: 1;
+        }
+
+        .trending-title {
+            font-size: 0.9rem;
+            color: #1f2937;
+            margin-bottom: 0.3rem;
+        }
+
+        .trending-meta {
+            font-size: 0.8rem;
+            color: #9ca3af;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1f2937;
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: 3rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #fbbf24;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: #fbbf24;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid #374151;
+            color: #9ca3af;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .main-container {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+
+            .news-card {
+                flex-direction: column;
+            }
+
+            .news-card img {
+                width: 100%;
+                height: 150px;
+            }
+
+            .search-box input {
+                width: 150px;
+            }
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #1e40af;
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="billboard_container">
+        <script src="ads.js"></script>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="#" class="logo">BeritaKu</a>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#" onclick="loadCategory('nasional')">Nasional</a></li>
+                <li><a href="#" onclick="loadCategory('internasional')">Internasional</a></li>
+                <li><a href="#" onclick="loadCategory('olahraga')">Olahraga</a></li>
+                <li><a href="#" onclick="loadCategory('teknologi')">Teknologi</a></li>
+                <li><a href="#" onclick="loadCategory('ekonomi')">Ekonomi</a></li>
+            </ul>
+            <div class="search-box">
+                <input type="text" placeholder="Cari berita..." id="searchInput">
+                <button class="search-btn" onclick="searchNews()">🔍</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Breaking News -->
+    <div class="breaking-news">
+        <div class="breaking-container">
+            <div class="breaking-text" id="breakingText">
+                Presiden mengumumkan kebijakan baru untuk mendukung UMKM • Nilai tukar rupiah menguat terhadap dolar AS
+                • Tim   nasional Indonesia lolos ke babak selanjutnya
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Main Content -->
+        <main>
+            <!-- Hero Section -->
+            <article class="hero-section">
+                <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&h=300&fit=crop"
+                    alt="Berita Utama" class="hero-image">
+                <div class="hero-content">
+                    <span class="hero-category">Politik</span>
+                    <h1 class="hero-title">Pemerintah Luncurkan Program Baru untuk Mendukung Ekonomi Digital</h1>
+                    <p class="hero-excerpt">
+                        Dalam upaya memperkuat ekosistem ekonomi digital Indonesia, pemerintah mengumumkan serangkaian
+                        inisiatif baru yang akan membantu pelaku usaha mikro, kecil, dan menengah (UMKM) untuk beralih
+                        ke platform digital.
+                    </p>
+                    <div class="hero-meta">
+                        <span>12 Agustus 2025</span>
+                        <span style="margin-left: auto;">👁️ 15.2k views</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- News Grid -->
+            <div class="news-grid" id="newsGrid">
+                <!-- News akan dimuat dengan JavaScript -->
+            </div>
+        </main>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Trending News -->
+            <div class="sidebar-section">
+                <h2 class="sidebar-title">Trending</h2>
+                <div id="trendingNews">
+                </div>
+            </div>
+
+            <div id="showcase_container">
+                <script src="ads.js"></script>
+            </div>
+
+            <div id="showcase2_container">
+                <script src="ads.js"></script>
+            </div>
+
+            <div id="halfpage_container">
+                <script src="ads.js"></script>
+            </div>
+
+            <div class="sidebar-section">
+                <h2 class="sidebar-title">Berita Terbaru</h2>
+                <div id="latestNews">
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>BeritaKu</h3>
+                <p>Portal berita terpercaya yang menyajikan informasi terkini dari berbagai bidang dengan akurat dan
+                    berimbang.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Kategori</h3>
+                <ul>
+                    <li><a href="#">Nasional</a></li>
+                    <li><a href="#">Internasional</a></li>
+                    <li><a href="#">Olahraga</a></li>
+                    <li><a href="#">Teknologi</a></li>
+                    <li><a href="#">Ekonomi</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Tentang Kami</h3>
+                <ul>
+                    <li><a href="#">Redaksi</a></li>
+                    <li><a href="#">Kontak</a></li>
+                    <li><a href="#">Karir</a></li>
+                    <li><a href="#">Kebijakan Privasi</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Ikuti Kami</h3>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 BeritaKu. Semua hak dilindungi undang-undang.</p>
+        </div>
+    </footer>
+
+    <script>
+        const newsData = {
+            nasional: [
+                {
+                    title: "Menteri Pendidikan Umumkan Perubahan Kurikulum Baru",
+                    excerpt: "Kurikulum baru akan lebih fokus pada pengembangan karakter dan keterampilan abad 21",
+                    category: "Pendidikan",
+                    time: "2 jam lalu",
+                    image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=300&h=200&fit=crop",
+                    views: "8.5k"
+                },
+                {
+                    title: "Program Bantuan Sosial Diperluas ke Seluruh Indonesia",
+                    excerpt: "Pemerintah mengalokasikan anggaran tambahan untuk memperluas jangkauan bantuan sosial",
+                    category: "Sosial",
+                    time: "4 jam lalu",
+                    image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=300&h=200&fit=crop",
+                    views: "12.1k"
+                }
+            ],
+            internasional: [
+                {
+                    title: "Konflik di Timur Tengah Memasuki Fase Baru",
+                    excerpt: "Upaya diplomatik internasional terus dilakukan untuk menyelesaikan konflik",
+                    category: "Politik",
+                    time: "1 jam lalu",
+                    image: "https://images.unsplash.com/photo-1495020689067-958852a7765e?w=300&h=200&fit=crop",
+                    views: "25.3k"
+                },
+                {
+                    title: "Ekonomi Global Menunjukkan Tanda-tanda Pemulihan",
+                    excerpt: "Bank Dunia memprediksi pertumbuhan ekonomi global akan lebih stabil di tahun ini",
+                    category: "Ekonomi",
+                    time: "3 jam lalu",
+                    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=300&h=200&fit=crop",
+                    views: "18.7k"
+                }
+            ],
+            olahraga: [
+                {
+                    title: "Timnas Indonesia Raih Kemenangan Gemilang",
+                    excerpt: "Dengan skor 3-1, timnas berhasil mengalahkan tim tamu dalam pertandingan kandang",
+                    category: "Sepak Bola",
+                    time: "30 menit lalu",
+                    image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=300&h=200&fit=crop",
+                    views: "45.2k"
+                },
+                {
+                    title: "Atlet Badminton Indonesia Juara Dunia",
+                    excerpt: "Prestasi gemilang diraih dalam kejuaraan dunia badminton di Denmark",
+                    category: "Badminton",
+                    time: "2 jam lalu",
+                    image: "https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=300&h=200&fit=crop",
+                    views: "32.8k"
+                }
+            ],
+            teknologi: [
+                {
+                    title: "AI Generative Transformasi Industri Kreatif Indonesia",
+                    excerpt: "Perkembangan AI generative membuka peluang baru bagi industri kreatif lokal",
+                    category: "Kecerdasan Buatan",
+                    time: "1 jam lalu",
+                    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=300&h=200&fit=crop",
+                    views: "22.1k"
+                },
+                {
+                    title: "Startup Fintech Indonesia Raih Pendanaan Seri B",
+                    excerpt: "Pendanaan sebesar $50 juta akan digunakan untuk ekspansi ke Asia Tenggara",
+                    category: "Startup",
+                    time: "5 jam lalu",
+                    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=300&h=200&fit=crop",
+                    views: "16.5k"
+                }
+            ],
+            ekonomi: [
+                {
+                    title: "Inflasi Indonesia Terkendali di Bulan Ini",
+                    excerpt: "Bank Indonesia melaporkan tingkat inflasi berada dalam target yang diharapkan",
+                    category: "Moneter",
+                    time: "3 jam lalu",
+                    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=300&h=200&fit=crop",
+                    views: "19.3k"
+                },
+                {
+                    title: "Ekspor Komoditas Pertanian Meningkat 15%",
+                    excerpt: "Kinerja ekspor yang positif didorong oleh permintaan global yang tinggi",
+                    category: "Perdagangan",
+                    time: "4 jam lalu",
+                    image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=300&h=200&fit=crop",
+                    views: "14.7k"
+                }
+            ]
+        };
+
+        document.addEventListener('DOMContentLoaded', function () {
+            loadCategory('nasional');
+            loadTrendingNews();
+            loadLatestNews();
+        });
+
+        function loadCategory(category) {
+            const newsGrid = document.getElementById('newsGrid');
+            const news = newsData[category] || [];
+
+            newsGrid.innerHTML = '';
+
+            news.forEach(article => {
+                const newsCard = createNewsCard(article);
+                newsGrid.appendChild(newsCard);
+            });
+        }
+
+        function createNewsCard(article) {
+            const card = document.createElement('article');
+            card.className = 'news-card';
+            card.innerHTML = `
+                <img src="${article.image}" alt="${article.title}">
+                <div class="news-card-content">
+                    <span class="news-category">${article.category}</span>
+                    <h3 class="news-title">${article.title}</h3>
+                    <div class="news-meta">
+                        <span>${article.time}</span>
+                        <span style="margin-left: auto;">👁️ ${article.views} views</span>
+                    </div>
+                </div>
+            `;
+            return card;
+        }
+
+        function loadTrendingNews() {
+            const trendingContainer = document.getElementById('trendingNews');
+            const allNews = Object.values(newsData).flat();
+            const trending = allNews.slice(0, 5);
+
+            trendingContainer.innerHTML = '';
+
+            trending.forEach((article, index) => {
+                const trendingItem = document.createElement('div');
+                trendingItem.className = 'trending-item';
+                trendingItem.innerHTML = `
+                    <div class="trending-number">${index + 1}</div>
+                    <div class="trending-content">
+                        <div class="trending-title">${article.title}</div>
+                        <div class="trending-meta">${article.time} • ${article.views} views</div>
+                    </div>
+                `;
+                trendingContainer.appendChild(trendingItem);
+            });
+        }
+
+        function loadLatestNews() {
+            const latestContainer = document.getElementById('latestNews');
+            const allNews = Object.values(newsData).flat();
+            const latest = allNews.slice(0, 3);
+
+            latestContainer.innerHTML = '';
+
+            latest.forEach(article => {
+                const latestItem = document.createElement('div');
+                latestItem.className = 'trending-item';
+                latestItem.innerHTML = `
+                    <div class="trending-content">
+                        <div class="trending-title">${article.title}</div>
+                        <div class="trending-meta">${article.time} • ${article.category}</div>
+                    </div>
+                `;
+                latestContainer.appendChild(latestItem);
+            });
+        }
+
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        function searchNews() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            if (!searchTerm) return;
+
+            const allNews = Object.values(newsData).flat();
+            const results = allNews.filter(article =>
+                article.title.toLowerCase().includes(searchTerm) ||
+                article.excerpt.toLowerCase().includes(searchTerm)
+            );
+
+            const newsGrid = document.getElementById('newsGrid');
+            newsGrid.innerHTML = '';
+
+            if (results.length === 0) {
+                newsGrid.innerHTML = '<p style="text-align: center; color: #6b7280; padding: 2rem;">Tidak ada berita yang ditemukan untuk pencarian "' + searchTerm + '"</p>';
+            } else {
+                results.forEach(article => {
+                    const newsCard = createNewsCard(article);
+                    newsGrid.appendChild(newsCard);
+                });
+            }
+        }
+
+        const breakingTexts = [
+            "Presiden mengumumkan kebijakan baru untuk mendukung UMKM • Nilai tukar rupiah menguat terhadap dolar AS • Tim nasional Indonesia lolos ke babak selanjutnya",
+            "Gempa bumi 5.2 SR mengguncang Jawa Barat, tidak ada korban jiwa • Harga minyak dunia naik 3% • Peluncuran satelit komunikasi Indonesia berhasil",
+            "Program vaksinasi COVID-19 mencapai 90% populasi • Ekspor komoditas pertanian meningkat 15% • Startup teknologi Indonesia raih pendanaan besar"
+        ];
+
+        let breakingIndex = 0;
+        setInterval(() => {
+            breakingIndex = (breakingIndex + 1) % breakingTexts.length;
+            document.getElementById('breakingText').textContent = breakingTexts[breakingIndex];
+        }, 10000);
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
