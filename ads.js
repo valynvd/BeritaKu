@@ -11,7 +11,7 @@ function renderBillboard() {
   if (!el) return;
   el.innerHTML = `
     <div style="width:970px;height:250px;margin:0 auto;background:#eee;display:flex;align-items:center;justify-content:center;">
-      <a href="https://example.com" target="_blank" style="width:100%;height:100%;">
+      <a href="https://www.liputan6.com/tekno/read/6137572/black-myth-zhong-kui-diumumkan-di-gamescom-2025-incar-rilis-ke-pc-dan-konsol" target="_blank" style="width:100%;height:100%;">
         <img src="https://placehold.co/970x250/png?text=Billboard" style="width:100%;height:100%;object-fit:cover;" />
       </a>
     </div>`;
@@ -33,7 +33,7 @@ function renderHalfpage() {
 
   el.innerHTML = `
     <div class="halfpage-container">
-      <a href="https://example.com" target="_blank">
+      <a href="https://www.liputan6.com/" target="_blank">
         <img src="https://placehold.co/300x600.png?text=Halfpage" alt="Halfpage Ad"/>
       </a>
     </div>`;
@@ -83,7 +83,7 @@ function renderShowcaseCustom() {
 
   el.innerHTML = `
     <div class="showcase-wrap">
-      <a href="https://example.com" target="_blank">
+      <a href="https://www.liputan6.com/" target="_blank">
         <div class="cube" id="showcaseCube">
           <div class="cube-face" style="transform:rotateY(0deg) translateZ(150px);">
             <img src="https://placehold.co/300x250/808080/000000/png?text=Showcase" style="width:100%;height:100%;object-fit:cover;" />
@@ -147,7 +147,7 @@ function renderShowcaseHTML5() {
   document.head.appendChild(style);
 
   el.innerHTML = `
-    <a href="https://example.com" target="_blank" style="display:block;width:100%;height:100%;text-decoration:none;color:inherit;">
+    <a href="https://www.liputan6.com/" target="_blank" style="display:block;width:100%;height:100%;text-decoration:none;color:inherit;">
       <div class="showcase-html5">
         <div class="burst"></div>
         <h3 style="position:absolute;left:16px;top:22px;font-size:22px;font-weight:800;">Big Savings, Today Only</h3>
