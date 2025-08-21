@@ -39,36 +39,78 @@ function renderHalfpage() {
     </div>`;
 }
 
-// Showcase custom 
+// Showcase custom
 function renderShowcaseCustom() {
   const el = document.getElementById("showcase_container");
   if (!el) return;
 
   const style = document.createElement("style");
   style.innerHTML = `
-    @keyframes rotateY { 0% { transform: rotateY(0deg); } 100% { transform: rotateY(360deg); } }
-    .cube { width:100%; height:100%; position:relative; transform-style:preserve-3d; animation:rotateY 15s infinite linear; }
-    .cube-face { position:absolute; width:100%; height:100%; backface-visibility:hidden; }
+    @keyframes rotateY { 
+      0% { transform: rotateY(0deg); } 
+      100% { transform: rotateY(360deg); } 
+    }
+    .cube { 
+      width:100%; 
+      height:100%; 
+      position:relative; 
+      transform-style:preserve-3d; 
+      animation:rotateY 15s infinite linear; 
+      transform-origin:center center;
+    }
+    .cube-face { 
+      position:absolute; 
+      width:100%; 
+      height:100%; 
+      backface-visibility:hidden; 
+    }
+    .showcase-wrap {
+      width:300px; 
+      height:250px; 
+      perspective:1200px; 
+      overflow:hidden; 
+      box-shadow:0 5px 10px rgba(0,0,0,0.2); 
+      border-radius:4px;
+      cursor:pointer;
+    }
+    .showcase-wrap a {
+      display:block;
+      width:100%;
+      height:100%;
+    }
   `;
   document.head.appendChild(style);
 
   el.innerHTML = `
-    <div style="width:300px;height:250px;perspective:1200px;overflow:hidden;box-shadow:0 5px 10px rgba(0,0,0,0.2);border-radius:4px;">
-      <div class="cube">
-        <div class="cube-face" style="transform:rotateY(0deg) translateZ(150px);">
-          <img src="https://placehold.co/300x250/808080/000000/png?text=Showcase" style="width:100%;height:100%;object-fit:cover;" />
+    <div class="showcase-wrap">
+      <a href="https://example.com" target="_blank">
+        <div class="cube" id="showcaseCube">
+          <div class="cube-face" style="transform:rotateY(0deg) translateZ(150px);">
+            <img src="https://placehold.co/300x250/808080/000000/png?text=Showcase" style="width:100%;height:100%;object-fit:cover;" />
+          </div>
+          <div class="cube-face" style="transform:rotateY(90deg) translateZ(150px);">
+            <img src="https://placehold.co/300x250/ffffff/000000/png?text=Showcase" style="width:100%;height:100%;object-fit:cover;" />
+          </div>
+          <div class="cube-face" style="transform:rotateY(180deg) translateZ(150px);">
+            <img src="https://placehold.co/300x250/808080/000000/png?text=Showcase" style="width:100%;height:100%;object-fit:cover;" />
+          </div>
+          <div class="cube-face" style="transform:rotateY(270deg) translateZ(150px);">
+            <img src="https://placehold.co/300x250/ffffff/000000/png?text=Showcase" style="width:100%;height:100%;object-fit:cover;" />
+          </div>
         </div>
-        <div class="cube-face" style="transform:rotateY(90deg) translateZ(150px);">
-          <img src="https://placehold.co/300x250/ffffff/000000/png?text=Showcase" style="width:100%;height:100%;object-fit:cover;" />
-        </div>
-        <div class="cube-face" style="transform:rotateY(180deg) translateZ(150px);">
-          <img src="https://placehold.co/300x250/808080/000000/png?text=Showcase" style="width:100%;height:100%;object-fit:cover;" />
-        </div>
-        <div class="cube-face" style="transform:rotateY(270deg) translateZ(150px);">
-          <img src="https://placehold.co/300x250/ffffff/000000/png?text=Showcase" style="width:100%;height:100%;object-fit:cover;" />
-        </div>
-      </div>
-    </div>`;
+      </a>
+    </div>
+  `;
+
+  const cube = document.getElementById("showcaseCube");
+  cube.addEventListener(
+    "mouseenter",
+    () => (cube.style.animationPlayState = "paused")
+  );
+  cube.addEventListener(
+    "mouseleave",
+    () => (cube.style.animationPlayState = "running")
+  );
 }
 
 // Showcase HTML5 300x250
