@@ -76,12 +76,43 @@ function renderShowcaseHTML5() {
   const el = document.getElementById("showcase2_container");
   if (!el) return;
 
+  // Tambahin CSS animasi
+  const style = document.createElement("style");
+  style.innerHTML = `
+    @keyframes spin { 
+      to { transform: rotate(360deg); } 
+    }
+    .showcase-html5 { 
+      width:300px; 
+      height:250px; 
+      position:relative; 
+      overflow:hidden; 
+      border-radius:10px; 
+      background:radial-gradient(120% 120% at 0% 0%, #0f172a 0%, #1e293b 40%, #0b1324 100%); 
+      color:#fff;
+      cursor:pointer;
+    }
+    .showcase-html5 .burst {
+      position:absolute;
+      width:420px; height:420px;
+      left:-60px; top:-160px;
+      opacity:.35; filter:blur(12px);
+      background:conic-gradient(from 90deg, #60a5fa, #a78bfa, #f472b6, #60a5fa);
+      mix-blend-mode:screen;
+      animation:spin 14s linear infinite;
+    }
+  `;
+  document.head.appendChild(style);
+
   el.innerHTML = `
-    <div style="width:300px;height:250px;position:relative;overflow:hidden;border-radius:10px;background:radial-gradient(120% 120% at 0% 0%, #0f172a 0%, #1e293b 40%, #0b1324 100%);color:#fff;">
-      <div style="position:absolute;width:420px;height:420px;left:-60px;top:-160px;opacity:.35;filter:blur(12px);background:conic-gradient(from 90deg, #60a5fa, #a78bfa, #f472b6, #60a5fa);mix-blend-mode:screen;animation:spin 14s linear infinite;"></div>
-      <h3 style="position:absolute;left:16px;top:22px;font-size:22px;font-weight:800;">Big Savings, Today Only</h3>
-      <p style="position:absolute;left:16px;top:72px;font-size:13px;">Extra 30% off on selected items. Limited time!</p>
-      <div style="position:absolute;right:8px;bottom:8px;width:170px;height:170px;border-radius:50%;background:#fff1;box-shadow:0 4px 18px rgba(59,130,246,.35);"></div>
-      <a href="https://example.com" target="_blank" style="position:absolute;left:16px;bottom:18px;background:#facc15;color:#111;font-weight:800;font-size:13px;padding:10px 16px;border-radius:999px;text-decoration:none;">Shop Now</a>
-    </div>`;
+    <a href="https://example.com" target="_blank" style="display:block;width:100%;height:100%;text-decoration:none;color:inherit;">
+      <div class="showcase-html5">
+        <div class="burst"></div>
+        <h3 style="position:absolute;left:16px;top:22px;font-size:22px;font-weight:800;">Big Savings, Today Only</h3>
+        <p style="position:absolute;left:16px;top:72px;font-size:13px;">Extra 30% off on selected items. Limited time!</p>
+        <div style="position:absolute;right:8px;bottom:8px;width:170px;height:170px;border-radius:50%;background:rgba(255,255,255,.1);box-shadow:0 4px 18px rgba(59,130,246,.35);"></div>
+        <div style="position:absolute;left:16px;bottom:18px;background:#facc15;color:#111;font-weight:800;font-size:13px;padding:10px 16px;border-radius:999px;">Shop Now</div>
+      </div>
+    </a>
+  `;
 }
